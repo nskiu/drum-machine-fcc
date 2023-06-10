@@ -29,28 +29,37 @@ body {
 #drumpad {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  .row-1 {
-    align-self: end;
+
+  @for $i from 1 through 3 {
+    :nth-child(#{$i}) {
+      align-self: end;
+    }
   }
-  .row-2 {
-    align-self: center;
+
+  @for $i from 4 through 6 {
+    :nth-child(#{$i}) {
+      align-self: center;
+    }
   }
-  .row-3 {
-    align-self: start;
+
+  $x: 1;
+  @while $x <= 7 {
+    :nth-child(#{$x}) {
+      justify-self: end;
+    }
+    $x: $x + 3;
   }
-  .col-1 {
-    justify-self: end;
-  }
-  .col-2 {
-    justify-self: center;
-  }
-  .col-3 {
-    justify-self: start;
+
+  $x: 2;
+  @while $x <= 8 {
+    :nth-child(#{$x}) {
+      justify-self: center;
+    }
+    $x: $x + 3;
   }
 }
 
 .drum-pad {
-  display: block;
   border: 1px solid;
   text-align: center;
   height: 5rem;
