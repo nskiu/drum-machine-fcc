@@ -1,4 +1,4 @@
-const Controls = ({ volume, handleChange, power, togglePower, display }) => {
+const Controls = ({ volume, handleVolume, power, togglePower, display }) => {
   return (
     <div id="controls">
       <div id="power-btn">
@@ -11,7 +11,7 @@ const Controls = ({ volume, handleChange, power, togglePower, display }) => {
         <input
           type="range"
           value={volume * 100}
-          onChange={handleChange}
+          onChange={handleVolume}
         ></input>
       </div>
       <div className="control">control</div>

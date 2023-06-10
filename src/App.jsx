@@ -25,12 +25,12 @@ const App = () => {
 
   const handleClick = (event) => {
     if (power) {
-      playBeat(event.target.children[0]);
       setDisplay(event.target.id);
+      playBeat(event.target.children[0]);
     }
   };
 
-  const handleChange = (event) => {
+  const handleVolume = (event) => {
     if (power) {
       setVolume(event.target.value / 100);
       setDisplay(`Volume: ${Math.round(volume * 100)} %`);
@@ -45,7 +45,7 @@ const App = () => {
       <DrumPad handleClick={handleClick} beats={beats} keys={keys} />
       <Controls
         volume={volume}
-        handleChange={handleChange}
+        handleVolume={handleVolume}
         power={power}
         togglePower={togglePower}
         display={display}
