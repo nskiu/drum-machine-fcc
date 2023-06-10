@@ -13,6 +13,7 @@ const App = () => {
 
   const togglePower = () => {
     setPower(!power);
+    setDisplay("");
   };
 
   const playBeat = (beat) => {
@@ -23,12 +24,17 @@ const App = () => {
   };
 
   const handleClick = (event) => {
-    playBeat(event.target.children[0]);
-    setDisplay(event.target.id);
+    if (power) {
+      playBeat(event.target.children[0]);
+      setDisplay(event.target.id);
+    }
   };
 
   const handleChange = (event) => {
-    setVolume(event.target.value / 100);
+    if (power) {
+      setVolume(event.target.value / 100);
+      setDisplay(`Volume: ${Math.round(volume * 100)} %`);
+    }
   };
 
   const keys = Object.keys(beats);
