@@ -1,7 +1,9 @@
-const Controls = ({ volume, handleChange }) => {
+const Controls = ({ volume, handleChange, power, togglePower }) => {
   return (
     <div id="controls">
-      <div className="control">control</div>
+      <div id="power-btn">
+        <button onClick={togglePower}>{power ? <>ON</> : <>OFF</>}</button>
+      </div>
       <div id="display">display</div>
       <div className="volume-control">
         <input
