@@ -1,7 +1,7 @@
 import Controls from "./components/Controls";
 import DrumPad from "./components/DrumPad";
 import sounds from "./assets/sounds.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const file = sounds;
 
@@ -47,13 +47,17 @@ const App = () => {
   const keys = Object.keys(beats);
   const sets = Object.keys(file);
 
-  const handleKeydown = (event) => {
-    let key = event.key.toUpperCase();
-    if (!keys.includes(key)) return;
-    document.getElementById(beats[key].name).click();
-  };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      const keydown = event.key.toUpperCase();
+      document.getElementById(beats[keydown].name).click();
+    };
+    document.addEventListener("keydown", handleKeyDown);
 
-  window.addEventListener("keydown", handleKeydown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [beats]);
 
   return (
     <div id="drum-machine">
