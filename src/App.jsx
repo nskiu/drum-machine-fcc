@@ -9,6 +9,7 @@ const App = () => {
   const [power, setPower] = useState(true);
   const [beats, setBeats] = useState(text.set1);
   const [volume, setVolume] = useState(1);
+  const [display, setDisplay] = useState("");
 
   const togglePower = () => {
     setPower(!power);
@@ -23,21 +24,25 @@ const App = () => {
 
   const handleClick = (event) => {
     playBeat(event.target.children[0]);
+    setDisplay(event.target.id);
   };
 
   const handleChange = (event) => {
     setVolume(event.target.value / 100);
   };
 
+  const keys = Object.keys(beats);
+
   return (
     <div id="drum-machine">
       <div id="logo">Logo</div>
-      <DrumPad handleClick={handleClick} beats={beats} />
+      <DrumPad handleClick={handleClick} beats={beats} keys={keys} />
       <Controls
         volume={volume}
         handleChange={handleChange}
         power={power}
         togglePower={togglePower}
+        display={display}
       />
     </div>
   );

@@ -1,5 +1,4 @@
-const keys = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
-const DrumPad = ({ handleClick, beats }) => {
+const DrumPad = ({ handleClick, beats, keys }) => {
   return (
     <div id="drumpad">
       {keys.map((key) => {
