@@ -19,13 +19,14 @@ const App = () => {
   const playBeat = (beat) => {
     if (power) {
       beat.volume = volume;
+      beat.load();
       beat.play();
     }
   };
 
   const handleClick = (event) => {
     if (power) {
-      setDisplay(event.target.id);
+      setDisplay(event.target.id.toUpperCase());
       playBeat(event.target.children[0]);
     }
   };
@@ -33,7 +34,7 @@ const App = () => {
   const handleVolume = (event) => {
     if (power) {
       setVolume(event.target.value / 100);
-      setDisplay(`Volume: ${Math.round(volume * 100)} %`);
+      setDisplay(`VOLUME: ${Math.round(volume * 100)} %`);
     }
   };
 
@@ -50,7 +51,13 @@ const App = () => {
   useEffect(() => {
     const handleKeyDown = (event) => {
       const keydown = event.key.toUpperCase();
-      document.getElementById(beats[keydown].name).click();
+      if (!keys.includes(keydown)) return;
+      const button = document.getElementById(beats[keydown].name);
+      button.click();
+      button.classList.add("keydown");
+      setTimeout(() => {
+        button.classList.remove("keydown");
+      }, 300);
     };
     document.addEventListener("keydown", handleKeyDown);
 
