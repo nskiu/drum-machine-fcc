@@ -57,6 +57,10 @@ body {
     }
     $x: $x + 3;
   }
+  :hover {
+    cursor: pointer;
+    background-color: yellow;
+  }
 }
 
 .drum-pad {
