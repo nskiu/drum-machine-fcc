@@ -25,10 +25,19 @@ const App = () => {
     }
   };
 
+  const changeColor = (button) => {
+    button.classList.add("keydown");
+    setTimeout(() => {
+      button.classList.remove("keydown");
+    }, 300);
+  };
+
   const handleClick = (event) => {
     if (power) {
-      setDisplay(event.target.id.toUpperCase());
-      playBeat(event.target.children[0]);
+      let target = event.target;
+      setDisplay(target.id.toUpperCase());
+      playBeat(target.children[0]);
+      changeColor(target);
     }
   };
 
@@ -54,25 +63,27 @@ const App = () => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      const keydown = event.key.toUpperCase();
-      if (!keys.includes(keydown)) return;
-      const button = document.getElementById(beats[keydown].name);
-      button.click();
-      button.classList.add("keydown");
-      setTimeout(() => {
-        button.classList.remove("keydown");
-      }, 300);
+      if (power) {
+        const keydown = event.key.toUpperCase();
+        if (!keys.includes(keydown)) return;
+        const button = document.getElementById(beats[keydown].name);
+        button.click();
+        changeColor(button);
+      }
     };
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [beats]);
+  }, [beats, power]);
 
   return (
     <div id="drum-machine">
-      <div id="logo">Logo</div>
+      <div id="logo">
+        <i className="fas fa-drum"></i>
+        <p>My Drum Machine</p>
+      </div>
       <DrumPad handleClick={handleClick} beats={beats} keys={keys} />
       <Controls
         volume={volume}
