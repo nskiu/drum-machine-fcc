@@ -5,34 +5,43 @@ const Controls = ({
   togglePower,
   display,
   sets,
+  select,
   changeBeats,
 }) => {
+  console.log(select);
   return (
     <div id="controls">
       <div id="power-btn">
-        <button onClick={togglePower}>{power ? <>ON</> : <>OFF</>}</button>
+        <div onClick={togglePower}>
+          <i
+            className={`fas fa-power-off ${power ? "power-on" : "power-off"}`}
+          ></i>
+        </div>
       </div>
       <div id="display">
         <p>{display}</p>
       </div>
-      <div className="volume-control">
+      <div id="volume-control">
         <input
           type="range"
           value={volume * 100}
           onChange={handleVolume}
+          className="slider"
         ></input>
       </div>
-      <div className="control">
-        {sets.map((set) => {
+      <div className="set-buttons">
+        {sets.map((set, index) => {
           return (
-            <button value={set} key={set} onClick={changeBeats}>
-              {set}
-            </button>
+            <div
+              id={set}
+              key={set}
+              onClick={changeBeats}
+              className={`setter ${power && select === set ? "selected" : ""}`}
+            >
+              {`SET ${index + 1}`}
+            </div>
           );
         })}
-        {/* <button value="set1">Set 1</button>
-        <button value="set2">Set 2</button>
-        <button value="set3">Set 3</button> */}
       </div>
     </div>
   );

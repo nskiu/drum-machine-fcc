@@ -10,6 +10,7 @@ const App = () => {
   const [beats, setBeats] = useState(file.set1);
   const [volume, setVolume] = useState(1);
   const [display, setDisplay] = useState("");
+  const [select, setSelect] = useState("");
 
   const togglePower = () => {
     setPower(!power);
@@ -33,15 +34,18 @@ const App = () => {
 
   const handleVolume = (event) => {
     if (power) {
-      setVolume(event.target.value / 100);
+      let volume = event.target.value / 100;
+      setVolume(volume);
       setDisplay(`VOLUME: ${Math.round(volume * 100)} %`);
     }
   };
 
   const changeBeats = (event) => {
     if (power) {
-      setBeats(file[event.target.value]);
-      setDisplay(event.target.value);
+      let value = event.target.id;
+      setBeats(file[value]);
+      setDisplay(value);
+      setSelect(value);
     }
   };
 
@@ -77,6 +81,7 @@ const App = () => {
         togglePower={togglePower}
         display={display}
         sets={sets}
+        select={select}
         changeBeats={changeBeats}
       />
     </div>
