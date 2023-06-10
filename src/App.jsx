@@ -3,11 +3,11 @@ import DrumPad from "./components/DrumPad";
 import sounds from "./assets/sounds.js";
 import { useState } from "react";
 
-const text = sounds;
+const file = sounds;
 
 const App = () => {
   const [power, setPower] = useState(true);
-  const [beats, setBeats] = useState(text.set1);
+  const [beats, setBeats] = useState(file.set1);
   const [volume, setVolume] = useState(1);
   const [display, setDisplay] = useState("");
 
@@ -37,7 +37,23 @@ const App = () => {
     }
   };
 
+  const changeBeats = (event) => {
+    if (power) {
+      setBeats(file[event.target.value]);
+      setDisplay(event.target.value);
+    }
+  };
+
   const keys = Object.keys(beats);
+  const sets = Object.keys(file);
+
+  const handleKeydown = (event) => {
+    let key = event.key.toUpperCase();
+    if (!keys.includes(key)) return;
+    document.getElementById(beats[key].name).click();
+  };
+
+  window.addEventListener("keydown", handleKeydown);
 
   return (
     <div id="drum-machine">
@@ -49,6 +65,8 @@ const App = () => {
         power={power}
         togglePower={togglePower}
         display={display}
+        sets={sets}
+        changeBeats={changeBeats}
       />
     </div>
   );
