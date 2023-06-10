@@ -10,7 +10,7 @@ const DrumPad = ({ handleClick, beats }) => {
             onClick={handleClick}
             id={{ ...beats[key] }.name}
           >
-            {key}{" "}
+            {key}
             <audio
               className="clip"
               id={key}

@@ -7,10 +7,10 @@ const text = sounds;
 
 const App = () => {
   const [beats, setBeats] = useState(text.set1);
-  const handleClick = () => {
-    console.log("clicked");
+  const handleClick = (event) => {
+    event.target.children[0].play();
   };
-  console.log(beats);
+
   return (
     <div id="drum-machine">
       <div id="logo">Logo</div>
