@@ -1,7 +1,14 @@
-$bg-main: #dac4ff;
+$bg-main: #243b53;
 $bg-machine: #627d98;
 $main-dark: #102a43;
-
+$click-color: #ef4e4e;
+$power-on: #65d6ad;
+$volume-slider: #0b69a3;
+$drum-on: #c6f7e2;
+$display-on: #d9e2ec;
+$display-off: #334e68;
+$set-selected: #40c3f7;
+$buttons-bg: #486581;
 * {
   padding: 0;
   margin: 0;
@@ -20,6 +27,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#logo {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  top: 8px;
+  left: 1rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  i {
+    margin-top: 3px;
+  }
+}
+.logo-on {
+  color: red;
+}
+.drum-on {
+  color: $drum-on !important;
+  border-color: $main-dark !important;
 }
 
 #drum-machine {
@@ -71,11 +99,9 @@ body {
   :hover {
     cursor: pointer;
   }
-  :active {
-    background-color: yellow;
-  }
+
   .keydown {
-    background-color: yellow;
+    background-color: $click-color;
   }
 }
 
@@ -90,6 +116,8 @@ body {
   align-items: center;
   font-weight: bolder;
   border-radius: 5%;
+  background-color: $buttons-bg;
+  color: $bg-main;
 }
 
 #controls {
@@ -104,6 +132,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
+
   div {
     display: flex;
     justify-content: center;
@@ -115,13 +144,11 @@ body {
     height: 2.5rem;
     cursor: pointer;
     width: 2.5rem;
-  }
-  .power-on {
-    color: green;
+    background-color: $buttons-bg;
   }
 
-  .power-off {
-    color: red;
+  .power-on {
+    color: $power-on;
   }
 }
 
@@ -135,11 +162,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(134, 131, 131);
+  background-color: $display-off;
   font-weight: bold;
   font-style: italic;
 }
-
+.display-on {
+  background-color: $display-on !important;
+}
 #volume-control {
   display: flex;
   align-self: start;
@@ -157,13 +186,15 @@ body {
     appearance: none;
     height: 1.3rem;
     width: 0.6rem;
-    background-color: blue;
+    background-color: $volume-slider;
+    border: 2px solid;
     cursor: pointer;
   }
   .slider::-moz-range-thumb {
     height: 1.3rem;
     width: 0.6rem;
-    background-color: blue;
+    background-color: $volume-slider;
+    border: 2px solid;
     cursor: pointer;
   }
 }
@@ -173,23 +204,19 @@ body {
   display: flex;
   justify-content: space-evenly;
   .setter {
-    border: 2px solid black;
+    border: 2px solid $main-dark;
     border-top-width: 1px;
     border-left-width: 1px;
+    background-color: $buttons-bg;
     padding: 0.5rem;
     font-size: 0.8rem;
-    background-color: $bg-machine;
     font-style: italic;
     font-weight: bold;
     cursor: pointer;
   }
   .selected {
-    color: green;
+    color: $set-selected;
   }
-}
-#logo {
-  position: absolute;
-  right: 1rem;
 }
 
 @media only screen and (max-width: 740px) {
@@ -199,16 +226,25 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
   }
+
   #drumpad {
     width: 500px;
     justify-self: center;
+    margin-top: 2rem;
   }
+
   #power-btn {
     div {
       height: 2rem;
       width: 2rem;
       font-size: 1.25rem;
     }
+  }
+  #volume-control {
+    margin-top: 0.5rem;
+  }
+  footer {
+    font-size: 0.9rem;
   }
 }
 
@@ -217,11 +253,30 @@ body {
     max-width: 70%;
     height: 440px;
   }
+
   #drumpad {
     width: 200px;
   }
+
   .drum-pad {
     height: 3rem;
     width: 3rem;
+  }
+}
+
+footer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  bottom: 60px;
+  flex-wrap: wrap;
+  p {
+    color: #040429;
+  }
+  a {
+    color: #040429;
+  }
+  a:hover {
+    color: $drum-on;
   }
 }

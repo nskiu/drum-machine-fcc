@@ -1,6 +1,6 @@
 // samples from sampleswap.org and freecodecamp
 const sounds = {
-  set1: {
+  "HEATER SET": {
     Q: {
       name: "Heater 1",
       source: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3",
@@ -38,7 +38,7 @@ const sounds = {
       source: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3",
     },
   },
-  set2: {
+  "CLASSIC SET": {
     Q: {
       name: "Bass Drum",
       source:
@@ -85,7 +85,7 @@ const sounds = {
         "https://sampleswap.org/samples-ghost/DRUMS%20(FULL%20KITS)/DRUM%20MACHINES/80s%20Drum%20Machine/19[kb]80s-TOM2.wav.mp3",
     },
   },
-  set3: {
+  "SMOOTH PIANO SET": {
     Q: {
       name: "Chord-1",
       source: "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3",

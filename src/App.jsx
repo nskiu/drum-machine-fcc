@@ -7,10 +7,10 @@ const file = sounds;
 
 const App = () => {
   const [power, setPower] = useState(true);
-  const [beats, setBeats] = useState(file.set1);
+  const [beats, setBeats] = useState(file[Object.keys(file)[0]]);
   const [volume, setVolume] = useState(1);
   const [display, setDisplay] = useState("");
-  const [select, setSelect] = useState("");
+  const [select, setSelect] = useState(Object.keys(file)[0]);
 
   const togglePower = () => {
     setPower(!power);
@@ -84,7 +84,12 @@ const App = () => {
         <i className="fas fa-drum"></i>
         <p>My Drum Machine</p>
       </div>
-      <DrumPad handleClick={handleClick} beats={beats} keys={keys} />
+      <DrumPad
+        handleClick={handleClick}
+        beats={beats}
+        keys={keys}
+        power={power}
+      />
       <Controls
         volume={volume}
         handleVolume={handleVolume}

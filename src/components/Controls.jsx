@@ -8,17 +8,14 @@ const Controls = ({
   select,
   changeBeats,
 }) => {
-  console.log(select);
   return (
     <div id="controls">
       <div id="power-btn">
         <div onClick={togglePower}>
-          <i
-            className={`fas fa-power-off ${power ? "power-on" : "power-off"}`}
-          ></i>
+          <i className={`fas fa-power-off ${power ? "power-on" : ""}`}></i>
         </div>
       </div>
-      <div id="display">
+      <div id="display" className={power ? "display-on" : ""}>
         <p>{display}</p>
       </div>
       <div id="volume-control">
@@ -26,7 +23,7 @@ const Controls = ({
           type="range"
           value={volume * 100}
           onChange={handleVolume}
-          className="slider"
+          className={`slider ${power ? "slider-on" : ""}`}
         ></input>
       </div>
       <div className="set-buttons">
